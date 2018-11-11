@@ -15,3 +15,5 @@ Computation time required for each step mentioned in [H.F. Huang, K.C. Liu, A ne
 ## Features
 * Data for each trial is stored in a file inside `.data` directory
 * Average values are stored inside `.data` directory
+* No of trials can be changed from within `config.js`
+* Hash function can be changed from within `config.js`
