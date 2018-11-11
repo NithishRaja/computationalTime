@@ -27,8 +27,6 @@ const average = function(){
         verify_zj_avg+=parseInt(trialDataObject.verify_zj)/100;
         kij_avg+=parseInt(trialDataObject.kij)/100;
         yij_avg+=parseInt(trialDataObject.yij)/100;
-        console.log(JSON.stringify(trialDataObject));
-
         // Saving averaged values
         // Opening file
         fs.open(config.dataDir+"/trial_average.json", "w", function(err, fileDescriptor){

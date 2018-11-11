@@ -62,75 +62,52 @@ const authenticate = function(){
   };
   // Hashing data 1
   let a = hashFunction(node2.privateKey+node1.id);
-  console.log("hash1: ", a);
   // Hashing data 2
   let b = hashFunction(node1.privateKey+node2.id);
-  console.log("hash2: ", b);
   // Calculating S[i][j]
   let time = process.hrtime();
   let res = XOR(a, b);
   let diff = process.hrtime(time);
-  console.log("sij: ", diff[0]*NS_PER_SEC+diff[1]);
-  // console.log("a^b: ", res);
   // Calculating a[i]
   let time_ai = process.hrtime();
   let ai = XOR(res, a);
   let diff_ai = process.hrtime(time_ai);
-  console.log("ai: ", diff_ai[0]*NS_PER_SEC+diff_ai[1]);
-  // console.log("a^b^a: ", ai);
   // Calculating z[i]
   // Generating random number
   let time_zi = process.hrtime();
   const t1 = Math.round(Math.random()*Math.pow(10, a.length));
   let zi = hashFunction(ai+t1.noExponents());
   let diff_zi = process.hrtime(time_zi);
-  console.log("zi: ", diff_zi[0]*NS_PER_SEC+diff_zi[1]);
-  // console.log("ai+t1: ", zi);
   // Verifying z[i]
   let time_verify_zi = process.hrtime();
   let verify_zi = hashFunction(b+t1.noExponents());
   let diff_verify_zi = process.hrtime(time_verify_zi);
-  console.log("verify zi: ", diff_verify_zi[0]*NS_PER_SEC+diff_verify_zi[1]);
-  // console.log("verify zi: ", verify_zi);
   // Calculating a[j]
   let time_aj = process.hrtime();
   aj = XOR(res, b);
   let diff_aj = process.hrtime(time_aj);
-  console.log("aj: ", diff_aj[0]*NS_PER_SEC+diff_aj[1]);
-  // console.log("a^b^b: ", aj);
   // Calculating z[j]
   // Generating rendom number
   let time_zj = process.hrtime();
   const t2 = Math.round(Math.random()*Math.pow(10, a.length));
   let zj = hashFunction(aj+t2.noExponents());
   let diff_zj = process.hrtime(time_zj);
-  console.log("zj: ", diff_zj[0]*NS_PER_SEC+diff_zj[1]);
-  // console.log("aj+t2: ", zj);
-  // console.log("t2: ", t2.toString(10));
   // Verifying z[j]
   let time_verify_zj = process.hrtime();
   let verify_zj = hashFunction(a+t2.noExponents());
   let diff_verify_zj = process.hrtime(time_verify_zj);
-  console.log("verify zj: ", diff_verify_zj[0]*NS_PER_SEC+diff_verify_zj[1]);
-  // console.log("verify zj: ", verify_zj);
   // Generating shared key k[i][j]
   let time_kij = process.hrtime();
   let ait1 = XOR(ai, t1.noExponents());
   let ajt2 = XOR(aj, t2.noExponents());
   let kij = hashFunction(ait1+ajt2);
   let diff_kij = process.hrtime(time_kij);
-  console.log("kij: ", diff_kij[0]*NS_PER_SEC+diff_kij[1]);
-  // console.log("kij: ", kij);
-  // console.log("ait1: ", ait1);
-  // console.log("ajt2: ", ajt2);
   // Generating y[i][j]
   let time_yij = process.hrtime();
   let titj = XOR(t1.noExponents(), t2.noExponents());
   let yij = hashFunction(kij, titj);
   let diff_yij = process.hrtime(time_yij);
-  console.log("yij: ", diff_yij[0]*NS_PER_SEC+diff_yij[1]);
-  // console.log("titj: ", titj);
-  // console.log("yij: ", yij);
+  // Returning data
   return {
     "sij": diff[0]*NS_PER_SEC+diff[1],
     "ai": diff_ai[0]*NS_PER_SEC+diff_ai[1],
