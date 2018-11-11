@@ -9,7 +9,8 @@ const path = require("path");
 // Initializing container
 const config = {
   "dataDir": path.join(__dirname, ".data"),
-  "hashFunction": "sha512"
+  "hashFunction": "sha512",
+  "noOfTrials": 100
 };
 
 // Exporting parameters

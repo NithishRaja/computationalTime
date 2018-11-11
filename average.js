@@ -11,7 +11,7 @@ const config = require("./config");
 const average = function(){
   let sij_avg=0, ai_avg=0, zi_avg=0, verify_zi_avg=0, aj_avg=0, zj_avg=0, verify_zj_avg=0, kij_avg=0, yij_avg=0;
   // Looping through 100 times
-  for(let i=1;i<101;++i){
+  for(let i=1;i<=config.noOfTrials;++i){
     // Reading data from file
     fs.readFile(config.dataDir+"/trial"+i+".json", function(err, trialData){
       if(!err&&trialData){

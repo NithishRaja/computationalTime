@@ -123,7 +123,7 @@ const authenticate = function(){
 
 const loop = function(){
   // Running loop for 100 tries
-  for(let i=1;i<101;++i){
+  for(let i=1;i<=config.noOfTrials;++i){
     // Calling authenticate function
     const resultObject = authenticate();
     // Saving trial data
