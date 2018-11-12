@@ -18,15 +18,15 @@ const average = function(){
         // Converting data into object
         trialDataObject = JSON.parse(trialData.toString());
         // Cumulating averages
-        sij_avg+=parseInt(trialDataObject.sij)/100;
-        ai_avg+=parseInt(trialDataObject.ai)/100;
-        aj_avg+=parseInt(trialDataObject.aj)/100;
-        zi_avg+=parseInt(trialDataObject.zi)/100;
-        zj_avg+=parseInt(trialDataObject.zj)/100;
-        verify_zi_avg+=parseInt(trialDataObject.verify_zi)/100;
-        verify_zj_avg+=parseInt(trialDataObject.verify_zj)/100;
-        kij_avg+=parseInt(trialDataObject.kij)/100;
-        yij_avg+=parseInt(trialDataObject.yij)/100;
+        sij_avg+=parseInt(trialDataObject.sij)/config.noOfTrials;
+        ai_avg+=parseInt(trialDataObject.ai)/config.noOfTrials;
+        aj_avg+=parseInt(trialDataObject.aj)/config.noOfTrials;
+        zi_avg+=parseInt(trialDataObject.zi)/config.noOfTrials;
+        zj_avg+=parseInt(trialDataObject.zj)/config.noOfTrials;
+        verify_zi_avg+=parseInt(trialDataObject.verify_zi)/config.noOfTrials;
+        verify_zj_avg+=parseInt(trialDataObject.verify_zj)/config.noOfTrials;
+        kij_avg+=parseInt(trialDataObject.kij)/config.noOfTrials;
+        yij_avg+=parseInt(trialDataObject.yij)/config.noOfTrials;
         // Saving averaged values
         // Opening file
         fs.open(config.dataDir+"/trial_average.json", "w", function(err, fileDescriptor){
