@@ -50,75 +50,20 @@ Number.prototype.noExponents= function(){
 // Hash function
 const authenticate = function(){
   const NS_PER_SEC = 1e9;
-  // Setting parameters for node 1
+  // Initializing pre-shared key
+  const PSK = hashFunction("pre shared key");
+  // Initializing authentication server secret key
+  const x = 50749371;
+  // Setting node parameters
   const node1 = {
-    "id": "12121212",
-    "privateKey": "12345678"
+    "id": 9791312
   };
-  // Setting parameters for node 2
-  const node2 = {
-    "id": "99133063",
-    "privateKey": "g3f1kzyn"
-  };
-  // Hashing data 1
-  let a = hashFunction(node2.privateKey+node1.id);
-  // Hashing data 2
-  let b = hashFunction(node1.privateKey+node2.id);
-  // Calculating S[i][j]
-  let time = process.hrtime();
-  let res = XOR(a, b);
-  let diff = process.hrtime(time);
-  // Calculating a[i]
-  let time_ai = process.hrtime();
-  let ai = XOR(res, a);
-  let diff_ai = process.hrtime(time_ai);
-  // Calculating z[i]
-  // Generating random number
-  let time_zi = process.hrtime();
-  const t1 = Math.round(Math.random()*Math.pow(10, a.length));
-  let zi = hashFunction(ai+t1.noExponents());
-  let diff_zi = process.hrtime(time_zi);
-  // Verifying z[i]
-  let time_verify_zi = process.hrtime();
-  let verify_zi = hashFunction(b+t1.noExponents());
-  let diff_verify_zi = process.hrtime(time_verify_zi);
-  // Calculating a[j]
-  let time_aj = process.hrtime();
-  aj = XOR(res, b);
-  let diff_aj = process.hrtime(time_aj);
-  // Calculating z[j]
-  // Generating rendom number
-  let time_zj = process.hrtime();
-  const t2 = Math.round(Math.random()*Math.pow(10, a.length));
-  let zj = hashFunction(aj+t2.noExponents());
-  let diff_zj = process.hrtime(time_zj);
-  // Verifying z[j]
-  let time_verify_zj = process.hrtime();
-  let verify_zj = hashFunction(a+t2.noExponents());
-  let diff_verify_zj = process.hrtime(time_verify_zj);
-  // Generating shared key k[i][j]
-  let time_kij = process.hrtime();
-  let ait1 = XOR(ai, t1.noExponents());
-  let ajt2 = XOR(aj, t2.noExponents());
-  let kij = hashFunction(ait1+ajt2);
-  let diff_kij = process.hrtime(time_kij);
-  // Generating y[i][j]
-  let time_yij = process.hrtime();
-  let titj = XOR(t1.noExponents(), t2.noExponents());
-  let yij = hashFunction(kij, titj);
-  let diff_yij = process.hrtime(time_yij);
-  // Returning data
-  return {
-    "sij": diff[0]*NS_PER_SEC+diff[1],
-    "ai": diff_ai[0]*NS_PER_SEC+diff_ai[1],
-    "zi": diff_zi[0]*NS_PER_SEC+diff_zi[1],
-    "verify_zi": diff_verify_zi[0]*NS_PER_SEC+diff_verify_zi[1],
-    "aj": diff_aj[0]*NS_PER_SEC+diff_aj[1],
-    "zj": diff_zj[0]*NS_PER_SEC+diff_zj[1],
-    "verify_zj": diff_verify_zj[0]*NS_PER_SEC+diff_verify_zj[1],
-    "kij": diff_kij[0]*NS_PER_SEC+diff_kij[1],
-    "yij": diff_yij[0]*NS_PER_SEC+diff_yij[1]
-  };
+  // Calculating f1i
+  const f1i = hashFunction(node1.id+""+x);
+  // Calculating f2i
+  const f2i = hashFunction(f1i);
+  // Calculating f3i
+  const f3i = XOR(PSK, f1i);
 };
 
 const loop = function(){
@@ -155,4 +100,4 @@ const loop = function(){
 };
 
 // Callling loop function
-loop();
+authenticate();
