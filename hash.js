@@ -28,6 +28,11 @@ const hashFunction = function(str){
   return hash.digest("base64");
 };
 
+// Function to generate random number
+const generateRandomNumber = function(length){
+  return Math.round(Math.random()*Math.pow(10, length));
+};
+
 // Function to convert exponent to string
 Number.prototype.noExponents= function(){
     var data= String(this).split(/[eE]/);
