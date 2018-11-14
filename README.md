@@ -1,6 +1,6 @@
 # Computational time measurement
 
-Computation time required for each step mentioned in [H.F. Huang, K.C. Liu, A new dynamic access control in wireless sensor networks, in: IEEE Asia-Pacific Services Computing Conference, APSCC’08, Yilan, Taiwan, 2008.](https://ieeexplore.ieee.org/document/4780791) is calculated and stored
+Computation time required for each step mentioned in [J. Lee, W. Lin and Y. Huang, "A lightweight authentication protocol for Internet of Things," 2014 International Symposium on Next-Generation Electronics (ISNE), Kwei-Shan, 2014.](https://ieeexplore.ieee.org/document/6839375) is calculated and stored
 
 ## Setup
 * create `./data` directory in root of project
