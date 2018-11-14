@@ -88,9 +88,6 @@ const authenticate = function(){
   const time_M2 = process.hrtime();
   const M2 = hashFunction(R1+M1+AIDi);
   const diff_M2 = process.hrtime(time_M1);
-  console.log("f1i: ", f1i);
-  console.log("R1: ", R1);
-  console.log("IDi: ", node1.id);
   // Authentication phase - step 3
   const time_verify_f1i = process.hrtime();
   const verify_f1i = XOR(PSK, f3i);
@@ -101,9 +98,6 @@ const authenticate = function(){
   const time_verify_IDi = process.hrtime();
   const verify_IDi = XOR(AIDi, hashFunction(R1));
   const diff_verify_IDi = process.hrtime(time_verify_IDi);
-  console.log("verify_f1i: ", verify_f1i);
-  console.log("verify_R1: ", verify_R1);
-  console.log("verify_IDi: ", verify_IDi);
   // Authentication phase - step 4
   const R2 = generateRandomNumber(f2i.length).noExponents();
   const time_AIDj = process.hrtime();
@@ -115,7 +109,6 @@ const authenticate = function(){
   const time_M_2 = process.hrtime();
   const M_2 = hashFunction(M_1+AIDj+R2);
   const diff_M_2 = process.hrtime(time_M_2);
-  console.log("R2: ", R2);
   // Authentication phase - step 5
   const time_skij = process.hrtime();
   const skij = hashFunction(R1+R2);
